@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>News</h1>
+
+    {% for newsItem in pagination %}
+        <h2>{{ newsItem.title }}</h2>
+        <p>{{ newsItem.description }}</p>
+        <img src="{{ newsItem.image }}" alt="{{ newsItem.title }}" />
+        <p>{{ newsItem.dateAdded|date('Y-m-d H:i:s') }}</p>
+        <hr />
+    {% endfor %}
+
+    {{ knp_pagination_render(pagination) }}
+{% endblock %}

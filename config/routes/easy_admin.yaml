@@ -1,0 +1,6 @@
+# config/routes/easy_admin.yaml
+
+easy_admin_bundle:
+    resource: 'App\Controller\Admin'
+    type: annotation
+    prefix: /admin

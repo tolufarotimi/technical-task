@@ -1,0 +1,21 @@
+enqueue:
+  transport:
+    default: 'amqp'
+    connections:
+      amqp:
+        driver: 'amqp'
+        host: 'localhost'
+        port: 5672
+        user: 'guest'
+        password: 'guest'
+        vhost: '/'
+        lazy: true
+
+  transports:
+    amqp:
+      exchanges:
+        parsing:
+          type: direct
+          durable: true
+          auto_delete: false
+          arguments: []

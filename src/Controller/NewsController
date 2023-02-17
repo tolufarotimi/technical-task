@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Controller;
+
+use App\Entity\News;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Knp\Component\Pager\PaginatorInterface;
+
+class NewsController extends AbstractController
+{
+    public function index(Request $request, PaginatorInterface $paginator): Response
+    {
+        $news = $this->getDoctrine()
+            ->getRepository(News::class)
+            ->findAll();
+
+        $pagination = $paginator->paginate(
+            $news,
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('news/index.html.twig', [
+            'pagination' => $pagination,
+        ]);
+    }
+}
